@@ -1,0 +1,700 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+:root {
+    --pink: #f16b91;
+    --dark-pink: #d94c78;
+    --light-pink: #fff0f5;
+    --text: #684957;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background:
+        radial-gradient(circle at 10% 15%, #ffe0ec 0, transparent 32%),
+        radial-gradient(circle at 90% 80%, #ffe5ed 0, transparent 35%),
+        linear-gradient(135deg, #fff8fb, #fff0f5);
+    color: var(--text);
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* Trái tim rơi liên tục */
+
+.heart-container {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.falling-heart {
+    position: absolute;
+    top: -50px;
+    display: block;
+    color: #f45b89;
+    opacity: 0;
+    user-select: none;
+    white-space: nowrap;
+    text-shadow: 0 0 8px #ff8eae70;
+    will-change: transform, opacity;
+    animation: heartFall linear forwards;
+}
+
+@keyframes heartFall {
+    0% {
+        transform: translate3d(0, -50px, 0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.85;
+    }
+
+    85% {
+        opacity: 0.75;
+    }
+
+    100% {
+        transform: translate3d(var(--drift), 110vh, 0)
+                   rotate(var(--rotation));
+        opacity: 0;
+    }
+}
+
+/* Nội dung trang */
+
+.page {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: 100vh;
+    padding: 48px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.top-label {
+    color: var(--dark-pink);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(34px, 6vw, 58px);
+    line-height: 1.3;
+    font-weight: 600;
+    color: #8f536b;
+}
+
+h1 span {
+    color: var(--dark-pink);
+}
+
+.subtitle {
+    max-width: 520px;
+    margin-top: 15px;
+    color: #9a7383;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.gift-card {
+    width: min(100%, 440px);
+    margin-top: 30px;
+    padding: 24px 25px 28px;
+    border: 1px solid #ffffff;
+    border-radius: 28px;
+    background: rgb(255 255 255 / 75%);
+    box-shadow: 0 15px 50px rgb(205 111 144 / 13%);
+    backdrop-filter: blur(8px);
+}
+
+.photo-frame {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #ffe5ee;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-heart {
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    color: white;
+    font-size: 34px;
+    text-shadow: 0 2px 12px #ad416b;
+}
+
+.small-message {
+    margin: 19px 0 12px;
+    font-size: 12px;
+    line-height: 1.9;
+    color: #987485;
+}
+
+/* Phong bì */
+
+.envelope-area {
+    height: 155px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 700px;
+}
+
+.envelope {
+    position: relative;
+    width: 180px;
+    height: 112px;
+    cursor: pointer;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 9px 8px rgb(186 91 125 / 15%));
+}
+
+.envelope:hover {
+    transform: translateY(-5px);
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    background: #f7a4bd;
+    border-radius: 5px;
+}
+
+.envelope-letter {
+    position: absolute;
+    z-index: 1;
+    left: 12px;
+    right: 12px;
+    bottom: 7px;
+    height: 82px;
+    background: #fffdfd;
+    border-radius: 5px;
+    transition: transform 0.7s ease;
+}
+
+.envelope-flap {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 90px solid transparent;
+    border-right: 90px solid transparent;
+    border-top: 64px solid #f8bfd0;
+    transform-origin: top center;
+    transition: transform 0.6s ease;
+}
+
+.envelope-front {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    background: #f48eae;
+    clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
+    border-radius: 5px;
+}
+
+.envelope-heart {
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    top: 53%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 27px;
+    text-shadow: 0 2px 5px #c64b78;
+    transition: opacity 0.3s ease;
+}
+
+.envelope.opened .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope.opened .envelope-letter {
+    transform: translateY(-48px);
+}
+
+.envelope.opened .envelope-heart {
+    opacity: 0;
+}
+
+.envelope-caption {
+    margin-top: -3px;
+    font-size: 11px;
+    color: #aa8091;
+    letter-spacing: 1px;
+}
+
+.open-button,
+.close-letter-button {
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #f58cac, #df5b87);
+    color: white;
+    padding: 13px 23px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 7px 20px rgb(223 91 135 / 23%);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.open-button:hover,
+.close-letter-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgb(223 91 135 / 32%);
+}
+
+.open-button:active,
+.close-letter-button:active {
+    transform: scale(0.98);
+}
+
+.open-button span {
+    padding: 0 5px;
+}
+
+.gift-card > .open-button {
+    margin-top: 17px;
+}
+
+.bottom-note {
+    max-width: 440px;
+    margin-top: 25px;
+    font-size: 12px;
+    line-height: 1.9;
+    color: #a47b8d;
+}
+
+.signature {
+    margin-top: 13px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 20px;
+    color: #cf7898;
+}
+
+.sparkle {
+    position: absolute;
+    color: #e8a0b9;
+    pointer-events: none;
+    animation: sparkleFloat 3s ease-in-out infinite;
+}
+
+.sparkle-one {
+    top: 135px;
+    left: calc(50% - 240px);
+    font-size: 25px;
+}
+
+.sparkle-two {
+    top: 205px;
+    right: calc(50% - 245px);
+    font-size: 29px;
+    animation-delay: 0.7s;
+}
+
+.sparkle-three {
+    top: 430px;
+    right: calc(50% - 270px);
+    font-size: 25px;
+    animation-delay: 1.2s;
+}
+
+@keyframes sparkleFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(15deg);
+        opacity: 1;
+    }
+}
+
+/* Hộp mật khẩu và bức thư */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgb(81 42 60 / 45%);
+    backdrop-filter: blur(7px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.password-box,
+.letter-box {
+    position: relative;
+    width: min(100%, 440px);
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid #fff;
+    border-radius: 24px;
+    background: #fff9fc;
+    box-shadow: 0 20px 70px rgb(95 37 61 / 22%);
+    text-align: center;
+    animation: boxAppear 0.35s ease both;
+}
+
+.password-box {
+    padding: 35px 27px 28px;
+}
+
+@keyframes boxAppear {
+    from {
+        transform: translateY(15px) scale(0.97);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.icon-button {
+    position: absolute;
+    z-index: 5;
+    top: 12px;
+    right: 15px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: #ffe7ef;
+    color: #b85b7d;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.lock-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: #ffe3ec;
+    color: #db6289;
+    font-size: 30px;
+}
+
+.password-box h2,
+.letter-box h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 31px;
+    font-weight: 600;
+    color: #b85b7d;
+}
+
+.password-box > p {
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #987485;
+}
+
+#passwordInput {
+    width: 100%;
+    margin-top: 22px;
+    padding: 14px 16px;
+    border: 1px solid #f2cada;
+    border-radius: 12px;
+    outline: none;
+    background: white;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#passwordInput:focus {
+    border-color: #e7779c;
+    box-shadow: 0 0 0 3px #fce0e9;
+}
+
+.password-submit {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.error-message {
+    min-height: 20px;
+    margin: 8px 0 0;
+    color: #d3436c;
+    font-size: 12px;
+}
+
+.password-hint {
+    font-size: 10px !important;
+    color: #b18a9a !important;
+}
+
+.shake {
+    animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-7px); }
+    75% { transform: translateX(7px); }
+}
+
+/* Bức thư */
+
+.letter-overlay {
+    z-index: 1100;
+}
+
+.letter-box {
+    padding: 34px 30px 28px;
+    text-align: left;
+}
+
+.letter-decoration {
+    margin-bottom: 5px;
+    font-size: 36px;
+    text-align: center;
+}
+
+.letter-date {
+    margin-bottom: 9px;
+    color: #ca7c98;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.letter-box h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.letter-content {
+    color: #765766;
+    font-size: 12px;
+    line-height: 2;
+}
+
+.letter-content p {
+    margin-bottom: 13px;
+}
+
+.letter-signature {
+    margin: 20px 0;
+    color: #c45e84;
+    font-family: 'Dancing Script', cursive;
+    font-size: 21px;
+    line-height: 1.6;
+    text-align: right;
+}
+
+.close-letter-button {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Trái tim bay khi mở phong bì */
+
+.burst-heart {
+    position: fixed;
+    z-index: 1200;
+    left: 0;
+    top: 0;
+    color: #ef5d8c;
+    pointer-events: none;
+    animation: heartBurst 1.5s ease-out forwards;
+}
+
+@keyframes heartBurst {
+    0% {
+        transform: translate(0, 0) scale(0.5) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--burst-x), var(--burst-y))
+                   scale(1.5) rotate(var(--burst-rotation));
+        opacity: 0;
+    }
+}
+
+/* Điện thoại */
+
+@media (max-width: 520px) {
+    .page {
+        padding: 35px 15px 24px;
+    }
+
+    .top-label {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    h1 {
+        font-size: clamp(31px, 9vw, 43px);
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+
+    .gift-card {
+        margin-top: 23px;
+        padding: 17px 17px 22px;
+        border-radius: 23px;
+    }
+
+    .photo-frame {
+        height: 150px;
+    }
+
+    .small-message {
+        font-size: 11px;
+    }
+
+    .sparkle-one {
+        top: 115px;
+        left: 5%;
+    }
+
+    .sparkle-two {
+        top: 180px;
+        right: 5%;
+    }
+
+    .sparkle-three {
+        top: 450px;
+        right: 4%;
+    }
+
+    .bottom-note {
+        font-size: 11px;
+    }
+
+    .password-box {
+        padding: 33px 20px 25px;
+    }
+
+    .letter-box {
+        padding: 33px 21px 24px;
+        max-height: 88vh;
+    }
+
+    .letter-content {
+        font-size: 11px;
+        line-height: 1.9;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sparkle {
+        animation: none;
+    }
+}
+
+/* Ảnh dọc bên trong lá thư */
+.letter-photo {
+    width: min(100%, 235px);
+    margin: 0 auto 24px;
+    padding: 10px 10px 16px;
+    background: #ffffff;
+    border: 1px solid #f8dce6;
+    border-radius: 5px;
+    box-shadow: 0 8px 24px rgba(190, 91, 127, 0.18);
+    transform: rotate(-2deg);
+    animation: photoAppear 0.8s ease both;
+}
+
+.portrait-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 3px;
+}
+
+.photo-caption {
+    display: block;
+    margin-top: 12px;
+    color: #c45e84;
+    font-family: 'Dancing Script', cursive;
+    font-size: 19px;
+    text-align: center;
+}
+
+@keyframes photoAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px) rotate(2deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(-2deg);
+    }
+}
+
+/* Điều chỉnh trên điện thoại */
+@media (max-width: 520px) {
+    .letter-photo {
+        width: min(75%, 210px);
+        margin-bottom: 22px;
+    }
+
+    .photo-caption {
+        font-size: 17px;
+    }
+}

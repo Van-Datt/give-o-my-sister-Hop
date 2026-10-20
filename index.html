@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff0f5">
+    <title>Tặng Chị 20/10</title>
+    <link rel="stylesheet" href="./CSS/index.css">
+</head>
+<body>
+
+    <!-- Trái tim rơi liên tục -->
+    <div class="heart-container" id="heartContainer"></div>
+
+    <!-- Nội dung chính -->
+    <main class="page">
+        <div class="sparkle sparkle-one">✦</div>
+        <div class="sparkle sparkle-two">✧</div>
+        <div class="sparkle sparkle-three">♡</div>
+
+        <h1>Nhân ngày 20/10<br><span>Em làm một web nhỏ gửi chị. </span></h1>
+
+        <section class="gift-card">
+            <div class="photo-frame">
+                <img
+                    src="https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=85"
+                    alt="Bó hoa hồng dịu dàng"
+                >
+                <span class="photo-heart">♡</span>
+            </div>
+
+            <p class="small-message">
+                Có những người xuất hiện trong cuộc sống,
+                chỉ cần nhìn thấy họ vui vẻ cũng đủ làm một ngày trở nên đẹp hơn.
+            </p>
+
+            <div class="envelope-area">
+                <div class="envelope" id="envelope">
+                    <div class="envelope-back"></div>
+                    <div class="envelope-letter"></div>
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-front"></div>
+                    <div class="envelope-heart">♥</div>
+                </div>
+            </div>
+
+            <p class="envelope-caption">Một chút tâm tư gửi đến chị</p>
+
+            <button class="open-button" id="openButton" type="button">
+                <span>♡</span> Mở món quà nhỏ <span>♡</span>
+            </button>
+        </section>
+
+        <p class="bottom-note">
+            Mong chị luôn bình an, hạnh phúc và được yêu thương thật nhiều.
+        </p>
+
+    </main>
+
+    <!-- Hộp nhập mật khẩu -->
+    <div class="overlay" id="passwordOverlay" aria-hidden="true">
+        <section class="password-box" role="dialog"
+                 aria-modal="true" aria-labelledby="passwordTitle">
+
+            <button class="icon-button" id="cancelPassword"
+                    type="button" aria-label="Đóng">×</button>
+
+            <div class="lock-icon">♡</div>
+            <h2 id="passwordTitle">Một bí mật nhỏ</h2>
+            <p>Nhập mật khẩu để mở món quà dành riêng cho chị nhé.</p>
+
+            <form id="passwordForm">
+                <input
+                    id="passwordInput"
+                    type="password"
+                    placeholder="Nhập mật khẩu..."
+                    autocomplete="off"
+                    aria-label="Mật khẩu"
+                    required
+                >
+
+                <p class="error-message" id="passwordError" role="alert"></p>
+
+                <button class="open-button password-submit" type="submit">
+                    Mở thư  
+                </button>
+            </form>
+
+            <p class="password-hint">Một điều nhỏ bé, nhưng được viết bằng cả tấm lòng.</p>
+        </section>
+    </div>
+
+    <!-- Bức thư -->
+    <div class="overlay letter-overlay" id="letterModal" aria-hidden="true">
+        <article class="letter-box" role="dialog"
+                 aria-modal="true" aria-labelledby="letterTitle">
+
+            <button class="icon-button" id="closeLetter"
+                    type="button" aria-label="Đóng thư">×</button>
+
+           
+            <div class="letter-decoration">🌷</div>
+            <p class="letter-date">20 · 10 · 2026</p>
+
+            <!-- Ảnh dọc của chị trong lá thư -->
+            <div class="letter-photo">
+                <img
+                    src="./IMG/anh.jpg"
+                    alt="Bức ảnh của chị"
+                    class="portrait-photo"
+                >
+                <span class="photo-caption">Tặng chị ♡</span>
+            </div>
+
+            <div class="letter-content">
+                <p>
+                    Nhân ngày 20/10, em chúc chị luôn xinh đẹp,
+                    vui vẻ, bình an và gặp thật nhiều điều tốt đẹp trong cuộc sống.
+                    Mong rằng mỗi ngày của chị đều có những niềm vui nhỏ,
+                    những nụ cười thật lòng và những người luôn quan tâm chị.
+                </p>
+
+                <p>
+                    Có lẽ em không giỏi nói ra những điều mình nghĩ,
+                    nên em chọn viết những lời này để gửi đến chị.
+                    Với em, chị là một người rất đặc biệt.
+                    Chỉ mong chị luôn hạnh phúc và được trân trọng
+                    theo cách mà chị xứng đáng nhận được.
+                </p>
+
+                <p>
+                    Cảm ơn chị vì đã xuất hiện và khiến những điều bình thường
+                    đôi khi cũng trở nên đáng nhớ.
+                    Dù sau này thế nào, em vẫn mong chị luôn gặp được
+                    những điều dịu dàng nhất.
+                </p>
+
+                <p>
+                    Chúc chị có một ngày 20/10 thật ấm áp,
+                    may mắn, luôn xinh xoắn tươi tắn và thật nhiều yêu thương. 
+                </p>
+            </div>
+            
+            <p>
+                 <i>-----------------ký tên---------------</i>
+            </p>
+            <p class="letter-signature">
+                 <h2>Hợp nhỏ♡</h2>
+            </p>
+
+            <button class="close-letter-button" id="letterDone" type="button">
+                Cất giữ lời chúc ♡
+            </button>
+        </article>
+    </div>
+
+    <!-- Nhạc nền: thêm file assets/nhac.mp3 nếu muốn sử dụng -->
+    <audio id="bgMusic" src="./IMG/nhac.mp3" preload="auto" loop></audio>
+
+    <script src="./JS/index.js"></script>
+</body>
+</html>
